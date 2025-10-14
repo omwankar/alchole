@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Spiritfilled Ltd - Luxury Dark Cinematic Design System */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Cinematic Dark Theme - Near Black with Luxury Accents */
+    --background: 0 0% 2%;
+    --foreground: 45 20% 95%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 45 20% 95%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 45 20% 95%;
+
+    /* Gold Accent - Primary luxury color */
+    --primary: 43 74% 52%;
+    --primary-foreground: 0 0% 2%;
+
+    /* Aqua Accent - Secondary highlight */
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 0 0% 2%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 45 10% 60%;
+
+    /* Aqua for interactive elements */
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 2%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 20% 95%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 8%;
+    --ring: 43 74% 52%;
+
+    --radius: 0.75rem;
+
+    /* Custom Luxury Variables */
+    --gold: 43 74% 52%;
+    --aqua: 180 100% 50%;
+    --near-black: 0 0% 2%;
+    --dark-overlay: 0 0% 0%;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(43 74% 52% / 0.2), hsl(43 74% 52% / 0.05));
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 2%), hsl(0 0% 4%));
+    --gradient-overlay: linear-gradient(180deg, hsl(0 0% 0% / 0.8), hsl(0 0% 0% / 0.4));
+    
+    /* Shadows */
+    --shadow-gold: 0 10px 40px -10px hsl(43 74% 52% / 0.4);
+    --shadow-aqua: 0 0 30px hsl(180 100% 50% / 0.3);
+    --shadow-elegant: 0 20px 60px -20px hsl(0 0% 0% / 0.8);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+
+@layer utilities {
+  /* Cinematic Animations */
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .parallax-slow {
+    transform: translateZ(-1px) scale(2);
+  }
+
+  /* Hover Effects */
+  .hover-glow-gold {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-glow-gold:hover {
+    box-shadow: var(--shadow-gold);
+    transform: translateY(-2px);
+  }
+
+  .hover-glow-aqua {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-glow-aqua:hover {
+    box-shadow: var(--shadow-aqua);
+  }
+
+  .hover-scale {
+    transition: var(--transition-fast);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-zoom {
+    overflow: hidden;
+  }
+
+  .hover-zoom img {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-zoom:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Gradient Overlays */
+  .gradient-overlay {
+    position: relative;
+  }
+
+  .gradient-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-overlay);
+    z-index: 1;
+  }
+
+  .gradient-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Text Glow */
+  .text-glow-gold {
+    text-shadow: 0 0 20px hsl(43 74% 52% / 0.5);
+  }
+
+  .text-glow-aqua {
+    text-shadow: 0 0 20px hsl(180 100% 50% / 0.5);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
