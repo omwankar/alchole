@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import logo from "@/assets/west-ford.png";
+
 
 const Footer = () => {
- 
+
 
   return (
     <footer className="bg-card border-t border-border">
@@ -10,9 +12,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-primary">
-             WEST<span className="text-accent">FORD</span>
-            </h3>
+            <img
+              src={logo}
+              alt="Westford Logo"
+              className="h-12 w-auto mb-1 transition-transform duration-300 group-hover:scale-105"
+            />
+
             <p className="text-sm text-muted-foreground leading-relaxed">
               Where Heritage Flows Into Every Bottle
             </p>
@@ -57,7 +62,7 @@ const Footer = () => {
           </div>
         </div>
 
-      
+
       </div>
     </footer>
   );

@@ -50,9 +50,10 @@ const About = () => {
 
   {/* Foreground Content */}
   <div className="relative z-10 text-center px-6 max-w-4xl animate-fade-in-up">
-    <h1 className="text-5xl md:text-7xl font-extrabold text-[#f5c76b] drop-shadow-lg tracking-wide">
-      About <span className="text-white/90">Spiritfilled</span> <span className="text-[#f5c76b]">Ltd</span>
+        <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 text-glow-gold"> About
+      West<span className="text-primary">Ford</span>
     </h1>
+
     <p className="text-lg md:text-2xl text-gray-200 mt-6 font-light leading-relaxed">
       Connecting the world’s finest distilleries with discerning collectors —
       <br className="hidden md:block" />
@@ -60,12 +61,7 @@ const About = () => {
     </p>
 
     <div className="flex justify-center space-x-4 mt-10 animate-fade-in delay-300">
-      <button className="px-6 py-3 bg-[#f5c76b] text-black font-semibold rounded-full shadow-lg hover:bg-[#e3b85f] transition duration-300">
-        Learn Our Story
-      </button>
-      <button className="px-6 py-3 border border-[#f5c76b] text-[#f5c76b] font-semibold rounded-full hover:bg-[#f5c76b]/10 transition duration-300">
-        Meet the Team
-      </button>
+ 
     </div>
   </div>
 
@@ -81,7 +77,7 @@ const About = () => {
             <div className="space-y-6 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Our Story</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Spiritfilled Ltd was founded on a simple yet profound principle: to connect the world's 
+                WestFord was founded on a simple yet profound principle: to connect the world's 
                 most discerning collectors and investors with Scotland's finest distilleries. Our journey 
                 began with a deep respect for tradition and an unwavering commitment to quality.
               </p>

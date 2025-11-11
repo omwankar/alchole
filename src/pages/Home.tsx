@@ -14,7 +14,8 @@ import premiumBottles from "@/assets/premium-bottles.jpg";
 import whiskeyPourGlass from "@/assets/whiskey-pour-glass.jpg";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import img1 from "@/assets/wine.png";
+import heroImage from "@/assets/hero.jpg"; 
+import bgimg from "@/assets/premium-bottles.jpg"
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -82,29 +83,30 @@ const Home = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      id: 1,
-      text: "Spiritfilled Ltd has provided us with exceptional access to some of the finest casks in Scotland. Their expertise and dedication to quality is unmatched.",
-      name: "James Morrison",
-      role: "Private Collector",
-      rating: 5,
-    },
-    {
-      id: 2,
-      text: "The team's knowledge of distilleries and their heritage is remarkable. They've helped us build a collection that truly represents Scotland's finest.",
-      name: "Sarah Chen",
-      role: "Investment Portfolio Manager",
-      rating: 5,
-    },
-    {
-      id: 3,
-      text: "Working with Spiritfilled has been a privilege. Their network and relationships with top distilleries are second to none.",
-      name: "Michael Roberts",
-      role: "Spirits Connoisseur",
-      rating: 5,
-    },
-  ];
+ const testimonials = [
+  {
+    id: 1,
+    text: "Westford has transformed the way I approach leadership and business strategy. The faculty’s real-world insights and global perspective are truly inspiring.",
+    name: "James Morrison",
+    role: "MBA Graduate",
+    rating: 5,
+  },
+  {
+    id: 2,
+    text: "The learning experience at Westford is exceptional. The blend of academic rigor and practical exposure helped me advance my career with confidence.",
+    name: "Sarah Chen",
+    role: "Business Analyst",
+    rating: 5,
+  },
+  {
+    id: 3,
+    text: "Westford’s programs are thoughtfully designed to meet modern industry needs. The support from mentors and peers made my journey deeply rewarding.",
+    name: "Michael Roberts",
+    role: "Senior Executive Student",
+    rating: 5,
+  },
+];
+
 
   const craftSteps = [
     {
@@ -137,16 +139,15 @@ const Home = () => {
   {/* Hero Section with Video + Placeholder */}
 <section className="relative h-screen w-screen flex items-center justify-center overflow-hidden">
   {/* Background Image */}
-  <div className="absolute inset-0 w-full h-full overflow-hidden">
-    <img
-      src="src\assets\hero.png"
-      alt="Whiskey barrels background"
-      className="absolute top-0 left-0 w-full h-full object-cover"
-    />
-    {/* Dark overlay for readability */}
-    <div className="absolute inset-0 bg-black/40" />
-  </div>
-
+<div className="absolute inset-0 w-full h-full overflow-hidden">
+  <img
+    src={heroImage}
+    alt="Hero Background"
+    className="absolute top-0 left-0 w-full h-full object-cover"
+  />
+  <div className="absolute inset-0 bg-black/40" />
+</div>
+F
   {/* Hero Text */}
   <div className="relative z-10 text-center px-4 animate-fade-in-up">
     <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 text-glow-gold">
@@ -194,7 +195,7 @@ const Home = () => {
             <div className="space-y-6 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-primary">Our Mission</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                At Spiritfilled Ltd, we are passionate about connecting discerning collectors 
+                At WestFord , we are passionate about connecting discerning collectors 
                 and investors with the world's finest cask spirits. Our deep-rooted relationships 
                 with prestigious distilleries ensure access to exceptional, heritage-rich inventory.
               </p>
@@ -343,8 +344,8 @@ const Home = () => {
       {/* Excellence in Every Drop - Parallax Section */}
 <section
   className="relative h-[100vh] flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover"
-  style={{
-    backgroundImage: `url('src/assets/premium-bottles.jpg')`,
+   style={{
+    backgroundImage: `url(${bgimg})`,
   }}
 >
   {/* Dark gradient overlay for contrast */}
