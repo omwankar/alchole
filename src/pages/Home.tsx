@@ -1,501 +1,350 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { Award, Globe2, TrendingUp, Sparkles, Star, Users, Heart } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import barrelWarehouse from "@/assets/barrel-warehouse.jpg";
-import oakBarrel from "@/assets/oak-barrel-closeup.jpg";
-import highlandDistillery from "@/assets/highland-distillery.jpg";
-import speysideStills from "@/assets/speyside-stills.jpg";
-import islayCoastal from "@/assets/islay-coastal.jpg";
-import premiumBottles from "@/assets/premium-bottles.jpg";
-import whiskeyPourGlass from "@/assets/whiskey-pour-glass.jpg";
+import { Award, ChevronDown, Globe2, Sparkles, TrendingUp, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { useEffect, useState } from "react";
-import heroImage from "@/assets/hero.jpg"; 
-import bgimg from "@/assets/premium-bottles.jpg"
+import { Layout } from "@/components/Layout";
+import { Seo } from "@/components/Seo";
+import { SectionHeading } from "@/components/SectionHeading";
+import { FeatureCard } from "@/components/FeatureCard";
+import { DistilleryCard } from "@/components/DistilleryCard";
+import { ProductCard } from "@/components/ProductCard";
+import { StatCounter } from "@/components/StatCounter";
+import { TestimonialCard } from "@/components/TestimonialCard";
+import { HeroMedia } from "@/components/HeroMedia";
+import { alts, media } from "@/data/media";
+import { products } from "@/data/products";
 
 const Home = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toast.success("Thank you for joining our journey!");
+  const onNewsletter = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    toast.success("You are on the Reserve List. We write rarely, and only when it matters.");
+    event.currentTarget.reset();
   };
 
-  const values = [
-    {
-      icon: Award,
-      title: "Authenticity",
-      description: "Every cask tells a story of genuine craftsmanship and heritage",
-    },
-    {
-      icon: Globe2,
-      title: "Global Network",
-      description: "Connected to the finest distilleries across Scotland and beyond",
-    },
-    {
-      icon: TrendingUp,
-      title: "Expert Trading",
-      description: "Decades of experience in premium spirits sourcing and trading",
-    },
-    {
-      icon: Sparkles,
-      title: "Tradition + Innovation",
-      description: "Honoring time-tested methods while embracing modern opportunities",
-    },
-  ];
-
-  const featuredDistilleries = [
-    {
-      image: highlandDistillery,
-      name: "Highland Heritage",
-      region: "Highland",
-      cask: "Refill Bourbon Hogshead",
-      tagline: "Refined over time in Highland mists",
-    },
-    {
-      image: speysideStills,
-      name: "Speyside Elegance",
-      region: "Speyside",
-      cask: "First Fill Oloroso Sherry",
-      tagline: "Where tradition meets exceptional flavor",
-    },
-    {
-      image: islayCoastal,
-      name: "Islay Coastal",
-      region: "Islay",
-      cask: "First Fill Tempranillo",
-      tagline: "Bold character shaped by the sea",
-    },
-  ];
-
- const testimonials = [
-  {
-    id: 1,
-    text: "Westford has transformed the way I approach leadership and business strategy. The faculty’s real-world insights and global perspective are truly inspiring.",
-    name: "James Morrison",
-    role: "MBA Graduate",
-    rating: 5,
-  },
-  {
-    id: 2,
-    text: "The learning experience at Westford is exceptional. The blend of academic rigor and practical exposure helped me advance my career with confidence.",
-    name: "Sarah Chen",
-    role: "Business Analyst",
-    rating: 5,
-  },
-  {
-    id: 3,
-    text: "Westford’s programs are thoughtfully designed to meet modern industry needs. The support from mentors and peers made my journey deeply rewarding.",
-    name: "Michael Roberts",
-    role: "Senior Executive Student",
-    rating: 5,
-  },
-];
-
-
-  const craftSteps = [
-    {
-      number: "01",
-      title: "Selection",
-      description: "Only the finest grains, water sources, and ingredients are chosen. Quality begins at the source with meticulous selection.",
-    },
-    {
-      number: "02",
-      title: "Distillation",
-      description: "Master distillers control every aspect through copper stills, extracting the perfect balance of flavors and character.",
-    },
-    {
-      number: "03",
-      title: "Maturation",
-      description: "Spirits age in carefully selected oak barrels, developing complex flavors and smooth character over years or decades.",
-    },
-    {
-      number: "04",
-      title: "Excellence",
-      description: "Each cask represents the culmination of patience, expertise, and an unwavering commitment to perfection.",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <Layout>
+      <Seo
+        title="Rare Spirits"
+        description="West Ford is a house of rare whisky and fine spirits, chosen for character, provenance and patience."
+        path="/"
+      />
 
-      {/* Hero Section with Video */}
-  {/* Hero Section with Video + Placeholder */}
-<section className="relative h-screen w-screen flex items-center justify-center overflow-hidden">
-  {/* Background Image */}
-<div className="absolute inset-0 w-full h-full overflow-hidden">
-  <img
-    src={heroImage}
-    alt="Hero Background"
-    className="absolute top-0 left-0 w-full h-full object-cover"
-  />
-  <div className="absolute inset-0 bg-black/40" />
-</div>
-F
-  {/* Hero Text */}
-  <div className="relative z-10 text-center px-4 animate-fade-in-up">
-    <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 text-glow-gold">
-      West<span className="text-primary">Ford</span>
-    </h1>
-    <p className="text-xl md:text-2xl text-foreground/90 mb-8 font-light">
-      Where Heritage Flows Into Every Bottle
-    </p>
-    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <Link to="/collection">
-        <Button
-          size="lg"
-          className="bg-primary hover:bg-primary/90 text-primary-foreground hover-glow-gold"
-        >
-          Explore Our Collection
-        </Button>
-      </Link>
-      <Link to="/about">
-        <Button
-          size="lg"
-          variant="outline"
-          className="border-primary text-primary hover:bg-primary/10"
-        >
-          About Our Legacy
-        </Button>
-      </Link>
-    </div>
-  </div>
-</section>
+      <section className="relative mt-20 h-[calc(100vh-5rem)] min-h-[600px] w-full overflow-hidden bg-background">
+        <HeroMedia />
 
+        <div className="hero-fade-left pointer-events-none absolute inset-0 hidden md:block" />
+        <div className="pointer-events-none absolute inset-0 bg-black/60 md:hidden" />
+        <div className="hero-fade-top pointer-events-none absolute inset-0" />
+        <div className="hero-fade-bottom pointer-events-none absolute inset-0" />
+        <div className="hero-fade-vignette pointer-events-none absolute inset-0" />
 
-
-
-      {/* About Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="hover-zoom rounded-lg overflow-hidden">
-              <img
-                src="https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Copper whiskey stills in distillery"
-                className="w-full h-[500px] object-cover rounded-lg"
-              />
-            </div>
-            <div className="space-y-6 animate-fade-in-up">
-              <h2 className="text-4xl md:text-5xl font-bold text-primary">Our Mission</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                At WestFord , we are passionate about connecting discerning collectors 
-                and investors with the world's finest cask spirits. Our deep-rooted relationships 
-                with prestigious distilleries ensure access to exceptional, heritage-rich inventory.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Every cask we offer represents generations of craftsmanship, tradition, and 
-                the timeless pursuit of excellence. We don't just trade spirits—we preserve 
-                and share liquid history.
-              </p>
-              <Link to="/about">
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground mt-4">
-                  Discover More
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Why Choose Us Section */}
-<section className="py-20 px-4 bg-card relative overflow-hidden">
-  {/* Background image */}
-  <div className="absolute inset-0">
-    <img
-      src="https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-      alt="Whiskey barrels background"
-      className="w-full h-full object-cover opacity-10"
-    />
-  </div>
-
-  {/* Content */}
-  <div className="container mx-auto relative z-10">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-        Why Choose Us
-      </h2>
-      <p className="text-lg text-muted-foreground">
-        Excellence in every aspect of premium spirits trading
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {values.map((value, index) => (
-        <Card
-          key={index}
-          className="p-6 bg-background border-border hover-glow-gold cursor-pointer group"
-        >
-          <value.icon className="w-12 h-12 text-primary mb-4 group-hover:text-accent transition-colors" />
-          <h3 className="text-xl font-semibold text-foreground mb-3">
-            {value.title}
-          </h3>
-          <p className="text-muted-foreground">{value.description}</p>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-
-      {/* Featured Distilleries */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Whiskey barrels background"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Featured Distilleries</h2>
-            <p className="text-lg text-muted-foreground">
-              A glimpse into our exceptional collection
+        <div className="container relative z-10 mx-auto flex h-full items-center justify-center md:justify-start">
+          <div className="max-w-xl text-center md:text-left">
+            <p className="animate-fade-in-up mb-5 text-xs uppercase tracking-[0.3em] text-primary">
+              The house of rare spirits
             </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredDistilleries.map((distillery, index) => (
-              <Card 
-                key={index} 
-                className="bg-card border-border overflow-hidden hover-glow-gold cursor-pointer group"
-              >
-                <div className="hover-zoom">
-                  <img 
-                    src={distillery.image} 
-                    alt={distillery.name} 
-                    className="w-full h-64 object-cover"
-                  />
-                </div>
-                <div className="p-6 space-y-2">
-                  <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    {distillery.name}
-                  </h3>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="text-accent font-semibold">{distillery.region}</span>
-                    <span className="text-muted-foreground">•</span>
-                    <span className="text-muted-foreground">{distillery.cask}</span>
-                  </div>
-                  <p className="text-muted-foreground italic pt-2">{distillery.tagline}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link to="/collection">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                View Full Collection
+            <h1 className="animate-fade-in-up font-display text-6xl font-bold leading-[0.95] text-foreground md:text-8xl" style={{ animationDelay: "150ms" }}>
+              West <span className="text-glow-gold text-primary">Ford</span>
+            </h1>
+            <p className="animate-fade-in-up mx-auto mt-6 max-w-md text-lg font-light leading-relaxed text-foreground/80 md:mx-0 md:text-xl" style={{ animationDelay: "300ms" }}>
+              Mastery of wood and spirit. Collections chosen for character, not volume.
+            </p>
+            <div className="animate-fade-in-up mt-10 flex flex-col items-center gap-4 sm:flex-row md:items-start" style={{ animationDelay: "450ms" }}>
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover-glow-gold hover:bg-primary/90">
+                <Link to="/collection">The Collection</Link>
               </Button>
-            </Link>
+              <Button asChild size="lg" variant="outline" className="border-primary bg-transparent text-primary hover:bg-primary/10">
+                <Link to="/about">The House</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="#mission"
+          className="scroll-chevron absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-primary"
+          aria-label="Scroll to our mission"
+        >
+          <ChevronDown size={32} />
+        </a>
+      </section>
+
+      <section className="border-y border-border bg-card px-8 py-20 md:py-28">
+        <div className="site-container">
+          <SectionHeading
+            title="The Principal Collection"
+            description="Named expressions, each with a story of wood, colour and place."
+          />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {products
+              .filter((item) =>
+                ["highland-reserve-18", "speyside-elegance-12", "islay-coastal-10"].includes(item.slug),
+              )
+              .map((product) => (
+                <ProductCard key={product.slug} product={product} />
+              ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+              <Link to="/collection">Explore the full collection</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Craftsmanship Process Section */}
-      <section className="py-20 px-4 bg-card relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Copper stills background"
-            className="w-full h-full object-cover"
-          />
+      <section id="mission" className="bg-background">
+        <div className="grid min-h-[70vh] items-stretch md:grid-cols-2">
+          <div className="hover-zoom relative min-h-[420px] overflow-hidden">
+            <img
+              src={media.missionStills}
+              alt={alts.missionStills}
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+          <div className="flex flex-col justify-center px-8 py-16 md:px-16 md:py-24 lg:px-20">
+            <h2 className="max-w-xl text-4xl font-bold text-primary md:text-5xl">
+              Crafted Slowly. Poured Rarely.
+            </h2>
+            <div className="mt-6 h-px w-6 bg-primary/80" />
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              At West Ford, we believe great spirits cannot be rushed. We partner with the world’s most respected
+              distilleries to bring you casks, single malts and limited releases chosen for character, not volume. Every
+              bottle carries the patience of the people who made it.
+            </p>
+            <div className="mt-8">
+              <Button asChild className="bg-primary text-primary-foreground hover-glow-gold hover:bg-primary/90">
+                <Link to="/about">Discover More</Link>
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className="container mx-auto relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center">The Art of Distillation</h2>
-          <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-            Centuries of tradition and craftsmanship in every cask
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {craftSteps.map((step, index) => (
-              <div 
-                key={index} 
-                className="p-6 bg-background rounded-lg border border-border hover-glow-gold cursor-pointer group"
-              >
-                <div className="text-5xl font-bold text-primary/20 mb-4 group-hover:text-accent transition-colors">
-                  {step.number}
+      </section>
+
+      <section className="relative overflow-hidden bg-card px-8 py-20 md:py-28">
+        <img
+          src={media.barrelsBg}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-10"
+          loading="lazy"
+        />
+        <div className="site-container relative z-10">
+          <SectionHeading
+            title="The Four Pillars"
+            description="Place, wood, time and record — the only measures that matter."
+          />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <FeatureCard
+              icon={Globe2}
+              title="Place"
+              description="Highland air, Speyside fruit, Islay salt. Landscape is not decoration. It is the work."
+            />
+            <FeatureCard
+              icon={Award}
+              title="Wood"
+              description="Oak does most of the talking. We choose casks for how they will shape colour, aroma and finish."
+            />
+            <FeatureCard
+              icon={TrendingUp}
+              title="Time"
+              description="Nothing is hurried. Spirit sits until it is ready to leave the warehouse, and not a season sooner."
+            />
+            <FeatureCard
+              icon={Sparkles}
+              title="Provenance"
+              description="Distillery, fill date and warehouse are written down. If we cannot prove it, we will not show it."
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-8 py-20 md:py-28">
+        <div className="site-container">
+          <SectionHeading title="Landscapes of Flavour" description="Three regions. Three tempers of spirit." />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <DistilleryCard
+              image={media.highland}
+              alt={alts.highland}
+              name="Highland"
+              region="Scottish Highlands"
+              tagline="Rich, full-bodied malts shaped by cold air, peat and patience."
+              href="/collection"
+            />
+            <DistilleryCard
+              image={media.speyside}
+              alt={alts.speyside}
+              name="Speyside"
+              region="Moray"
+              tagline="Elegant, honeyed and fruit-forward, the heart of refined Scotch."
+              href="/collection"
+            />
+            <DistilleryCard
+              image={media.islay}
+              alt={alts.islay}
+              name="Islay"
+              region="Hebrides"
+              tagline="Smoke, sea salt and bold character from the windswept coast."
+              href="/collection"
+            />
+          </div>
+          <div className="mt-12 text-center">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link to="/collection">View Full Collection</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-card px-8 py-20 md:py-28">
+        <img
+          src={media.distillationBg}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-5"
+          loading="lazy"
+        />
+        <div className="site-container relative z-10">
+          <SectionHeading
+            title="The Art of Distillation"
+            description="Four movements. Nothing hurried."
+          />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { n: "01", t: "Malt", d: "Select barley is steeped, germinated and dried.", img: media.stepMalt, alt: alts.stepMalt },
+              { n: "02", t: "Mash and Ferment", d: "Hot water and yeast turn grain into a rich wash.", img: media.stepMash, alt: alts.stepMash },
+              { n: "03", t: "Distill", d: "Copper stills refine the spirit, drop by drop.", img: media.stepDistill, alt: alts.stepDistill },
+              { n: "04", t: "Mature", d: "Oak casks give years of colour, depth and flavour.", img: media.stepCask, alt: alts.stepCask },
+            ].map((step) => (
+              <div key={step.n} className="group overflow-hidden rounded-lg border border-border bg-background hover-glow-gold">
+                <div className="hover-zoom h-40">
+                  <img src={step.img} alt={step.alt} className="h-full w-full object-cover" loading="lazy" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
+                <div className="p-6">
+                  <div className="mb-3 text-4xl font-bold text-primary/25 transition-colors group-hover:text-accent">
+                    {step.n}
+                  </div>
+                  <h3 className="mb-2 text-2xl font-bold text-foreground">{step.t}</h3>
+                  <p className="text-muted-foreground">{step.d}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Excellence in Every Drop - Parallax Section */}
-<section
-  className="relative h-[100vh] flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover"
-   style={{
-    backgroundImage: `url(${bgimg})`,
-  }}
->
-  {/* Dark gradient overlay for contrast */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-
-  {/* Subtle gold radial glow overlay */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)]" />
-
-  {/* Centered content */}
-  <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-    <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-wide drop-shadow-lg text-glow-gold">
-      Excellence in Every Drop
-    </h2>
-    <p className="text-xl md:text-2xl text-white/90 font-light">
-      From barrel to bottle, crafting liquid perfection
-    </p>
-
-    {/* Gold divider */}
-    <div className="mt-8 mx-auto h-[2px] w-24 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 rounded-full opacity-70" />
-  </div>
-
-  {/* Soft vignette border */}
-  <div className="absolute inset-0 bg-black/20 shadow-[inset_0_0_80px_rgba(0,0,0,0.7)]" />
-</section>
-
-
-
-      {/* Stats Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="container mx-auto relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center p-6">
-              <div className="text-5xl md:text-6xl font-bold text-primary mb-2">30+</div>
-              <div className="text-lg text-muted-foreground">Years of Excellence</div>
-            </div>
-            <div className="text-center p-6">
-              <div className="text-5xl md:text-6xl font-bold text-primary mb-2">60+</div>
-              <div className="text-lg text-muted-foreground">Partner Distilleries</div>
-            </div>
-            <div className="text-center p-6">
-              <div className="text-5xl md:text-6xl font-bold text-primary mb-2">500+</div>
-              <div className="text-lg text-muted-foreground">Premium Casks</div>
-            </div>
-            <div className="text-center p-6">
-              <div className="text-5xl md:text-6xl font-bold text-primary mb-2">25+</div>
-              <div className="text-lg text-muted-foreground">Countries Served</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Lifestyle Section */}
-      <section className="py-20 px-4 bg-card relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Whiskey barrels background"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="hover-zoom rounded-lg overflow-hidden">
-              <img
-                src="https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Whiskey glass on table"
-                className="w-full h-[500px] object-cover rounded-lg"
-              />
-            </div>
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-primary">Discover the Finest</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Premium spirits represent centuries of tradition and craftsmanship. Explore our portfolio 
-                to discover casks that define excellence in every category.
-              </p>
-              <div className="space-y-4">
-                <div className="flex gap-4 items-start">
-                  <Users className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="text-xl font-semibold text-foreground mb-1">Heritage & Authenticity</h4>
-                    <p className="text-muted-foreground">Discover the stories behind legendary distilleries</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <Heart className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="text-xl font-semibold text-foreground mb-1">Craft Excellence</h4>
-                    <p className="text-muted-foreground">Explore casks defined by exceptional craftsmanship</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <TrendingUp className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h4 className="text-xl font-semibold text-foreground mb-1">Global Recognition</h4>
-                    <p className="text-muted-foreground">Featuring award-winning and internationally acclaimed casks</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.pexels.com/photos/602750/pexels-photo-602750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Whiskey barrels background"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center">
-            Trusted by Connoisseurs Worldwide
+      <section
+        className="parallax-band relative flex h-screen items-center justify-center overflow-hidden"
+        style={{ backgroundImage: `url(${media.premiumBottles})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,160,48,0.14)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.7)]" />
+        <div className="relative z-10 max-w-3xl px-6 text-center">
+          <h2 className="mb-6 text-5xl font-extrabold tracking-wide text-white text-glow-gold drop-shadow-lg md:text-7xl">
+            Excellence in Every Drop
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-16">
-            What our collectors and partners say about us
+          <p className="text-xl font-light text-white/90 md:text-2xl">
+            Some things cannot be hurried. They can only be waited for.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card 
-                key={testimonial.id} 
-                className="p-8 bg-card border-border hover-glow-gold cursor-pointer"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={20} fill="hsl(var(--primary))" className="text-primary" />
-                  ))}
+          <div className="gold-divider mt-8 w-6" />
+        </div>
+      </section>
+
+      <section className="px-8 py-20 md:py-28">
+        <div className="site-container grid grid-cols-2 gap-8 md:grid-cols-4">
+          <StatCounter value={30} label="Years of Expertise" />
+          <StatCounter value={60} label="Partner Distilleries" />
+          <StatCounter value={500} label="Rare Casks" />
+          <StatCounter value={25} label="Countries Served" />
+        </div>
+      </section>
+
+      <section className="bg-card">
+        <div className="grid min-h-[60vh] items-stretch md:grid-cols-2">
+          <div className="hover-zoom relative min-h-[420px] overflow-hidden">
+            <img
+              src={media.lifestylePour}
+              alt={alts.lifestylePour}
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div className="flex flex-col justify-center px-8 py-16 md:px-16 md:py-24">
+            <h2 className="text-4xl font-bold text-primary md:text-5xl">A Collection for Connoisseurs</h2>
+            <div className="mt-6 h-px w-6 bg-primary/80" />
+            <div className="mt-8 space-y-6">
+              <div className="flex items-start gap-4">
+                <Users className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <h4 className="mb-1 text-xl font-semibold text-foreground">Heritage</h4>
+                  <p className="text-muted-foreground">Stories from legendary still houses, told without hurry.</p>
                 </div>
-                <p className="text-lg text-muted-foreground italic mb-6">"{testimonial.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                    <span className="text-lg font-bold text-primary">{testimonial.name.charAt(0)}</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Award className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <h4 className="mb-1 text-xl font-semibold text-foreground">Craft</h4>
+                  <p className="text-muted-foreground">Casks chosen for character, then left to become themselves.</p>
                 </div>
-              </Card>
-            ))}
+              </div>
+              <div className="flex items-start gap-4">
+                <Globe2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <h4 className="mb-1 text-xl font-semibold text-foreground">Reach</h4>
+                  <p className="text-muted-foreground">A private inventory for collectors across twenty-five countries.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-    
+      <section className="px-8 py-20 md:py-28">
+        <div className="site-container">
+          <SectionHeading title="Trusted Quietly" description="Words from those we serve. Placeholders pending permission." />
+          {/* Placeholder testimonials pending client approval */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <TestimonialCard
+              quote="The finest single malt selection I've found outside Scotland."
+              name="James R."
+              place="London"
+            />
+            <TestimonialCard
+              quote="Packaging, provenance and service were flawless."
+              name="Priya M."
+              place="Dubai"
+            />
+            <TestimonialCard
+              quote="My first cask investment, handled with real transparency."
+              name="Daniel K."
+              place="Singapore"
+            />
+          </div>
+        </div>
+      </section>
 
-      <Footer />
-    </div>
+      <section className="border-y border-border bg-card px-8 py-16">
+        <div className="site-container max-w-3xl text-center">
+          <p className="mb-3 text-[11px] uppercase tracking-[0.35em] text-primary">The West Ford Circle</p>
+          <h2 className="mb-4 text-3xl text-primary md:text-4xl">Be first to hear</h2>
+          <p className="mb-8 text-muted-foreground">
+            Occasional notes on limited releases and private tastings. Never noise.
+          </p>
+          <form onSubmit={onNewsletter} className="mx-auto flex max-w-lg flex-col gap-3 sm:flex-row">
+            <Input
+              type="email"
+              required
+              placeholder="Your email"
+              aria-label="Email address"
+              className="border-border bg-input text-foreground"
+            />
+            <Button type="submit" className="bg-primary text-primary-foreground hover-glow-gold hover:bg-primary/90">
+              Request access
+            </Button>
+          </form>
+        </div>
+      </section>
+    </Layout>
   );
 };
 

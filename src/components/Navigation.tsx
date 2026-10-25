@@ -1,81 +1,75 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { media } from "@/data/media";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import { useState } from "react";
-import logo from "@/assets/west-ford.png";
 
-const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Collection", path: "/collection" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
+
+export const Navigation = () => {
   const location = useLocation();
-
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Collection", path: "/collection" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
-  ];
-
+  const [open, setOpen] = useState(false);
   const isActive = (path: string) => location.pathname === path;
 
+  const linkClass = (path: string) =>
+    `relative text-sm font-medium tracking-wide transition-colors ${
+      isActive(path) ? "text-primary" : "text-muted-foreground hover:text-foreground"
+    }`;
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border max-h-24">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="group flex items-center">
-            <img
-              src={logo}
-              alt="Westford Logo"
-              className="h-14 w-auto transition-transform duration-300 group-hover:scale-105"
-            />
-          </Link>
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="site-container flex items-center justify-between gap-4 py-3 md:py-4">
+        <Link to="/" className="flex min-w-0 items-center">
+          <img
+            src={media.logo}
+            alt="West Ford"
+            className="h-10 w-auto max-w-[180px] object-contain object-left sm:h-12 md:h-14 md:max-w-[240px]"
+          />
+        </Link>
 
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-medium transition-colors relative group ${isActive(link.path) ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
-              >
-                {link.name}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                />
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        <div className="hidden items-center gap-4 md:flex xl:gap-7">
+          {navLinks.map((link) => (
+            <Link key={link.path} to={link.path} className={linkClass(link.path)}>
+              {link.name}
+              <span
+                className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${
+                  isActive(link.path) ? "w-full" : "w-0"
+                }`}
+              />
+            </Link>
+          ))}
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-4">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger
+            className="rounded-md border border-primary/50 p-2 text-primary md:hidden"
+            aria-label="Open menu"
+          >
+            <Menu size={22} />
+          </SheetTrigger>
+          <SheetContent side="right" className="border-border bg-background">
+            <SheetHeader>
+              <SheetTitle className="font-display text-left text-primary">West Ford</SheetTitle>
+            </SheetHeader>
+            <div className="mt-8 flex flex-col gap-5">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`text-sm font-medium py-2 transition-colors ${isActive(link.path) ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                    }`}
+                  onClick={() => setOpen(false)}
+                  className={`text-lg ${linkClass(link.path)}`}
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
-          </div>
-        )}
+          </SheetContent>
+        </Sheet>
       </div>
     </nav>
   );

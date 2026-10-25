@@ -1,71 +1,72 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
-import logo from "@/assets/west-ford.png";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { media } from "@/data/media";
 
+const links = [
+  { name: "Home", path: "/" },
+  { name: "Collection", path: "/collection" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
 
-const Footer = () => {
-
-
-  return (
-    <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
-          <div className="space-y-4">
-            <img
-              src={logo}
-              alt="Westford Logo"
-              className="h-12 w-auto mb-1 transition-transform duration-300 group-hover:scale-105"
-            />
-
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Where Heritage Flows Into Every Bottle
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Quick Links</h4>
-            <nav className="flex flex-col gap-2">
-              <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Home
-              </Link>
-              <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                About
-              </Link>
-              <Link to="/collection" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Our Brand & Collection
-              </Link>
-              <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
-            </nav>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Contact Us</h4>
-            <div className="flex flex-col gap-3">
-              <a href="tel:02081261760" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group">
-                <Phone size={16} className="group-hover:text-accent transition-colors" />
-                +44 (0) 808 280 0089
-              </a>
-              <a href="mailto:info@west-ford.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group">
-                <Mail size={16} className="group-hover:text-accent transition-colors" />
-                info@west-ford.com
-              </a>
-              <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                <MapPin size={16} className="mt-0.5 text-accent" />
-                <span>35 Firs Avenue London, England, N11 3NE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
+export const Footer = () => (
+  <footer className="border-t border-border bg-card">
+    <div className="site-container grid grid-cols-1 gap-10 py-16 md:grid-cols-3">
+      <div className="space-y-4">
+        <img src={media.logo} alt="West Ford" className="h-12 w-auto" />
+        <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+          West Ford. Fine spirits, responsibly enjoyed.
+        </p>
       </div>
-    </footer>
-  );
-};
+
+      <div className="space-y-4">
+        <h4 className="text-lg font-semibold text-foreground">The House</h4>
+        <nav className="flex flex-col gap-2">
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className="text-sm text-muted-foreground transition-colors hover:text-primary"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      <div className="space-y-4">
+        <h4 className="text-lg font-semibold text-foreground">Contact</h4>
+        <div className="flex flex-col gap-3 text-sm text-muted-foreground">
+          <a href="tel:+448082800089" className="flex items-center gap-2 hover:text-primary">
+            <Phone size={16} className="text-primary" />
+            +44 (0) 808 280 0089
+          </a>
+          <a href="mailto:info@west-ford.com" className="flex items-center gap-2 hover:text-primary">
+            <Mail size={16} className="text-primary" />
+            info@west-ford.com
+          </a>
+          <p className="flex items-start gap-2">
+            <MapPin size={16} className="mt-0.5 text-primary" />
+            35 Firs Avenue, London N11 3NE
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-4 pt-2 text-xs text-muted-foreground">
+          <Link to="/privacy" className="hover:text-primary">
+            Privacy
+          </Link>
+          <Link to="/terms" className="hover:text-primary">
+            Terms
+          </Link>
+          <Link to="/responsible-drinking" className="hover:text-primary">
+            Responsible Drinking
+          </Link>
+        </div>
+      </div>
+    </div>
+    <div className="border-t border-border py-6 text-center text-xs tracking-wide text-muted-foreground">
+      Please drink responsibly. Must be of legal drinking age.
+    </div>
+  </footer>
+);
 
 export default Footer;
