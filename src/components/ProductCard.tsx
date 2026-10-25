@@ -6,15 +6,20 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const ageLabel = product.age ? `${product.age} Years Old` : "No Age Statement";
+  const meta = [
+    product.age ? `${product.age} Years Old` : product.volume,
+    product.abv != null ? `${product.abv}% ABV` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <Card className="overflow-hidden border-border bg-card hover-glow-gold">
-      <div className="hover-zoom bg-background">
+      <div className="hover-zoom bg-black">
         <img
           src={product.image}
-          alt={`${product.name}, a ${product.region} ${product.type.toLowerCase()}`}
-          className="h-72 w-full object-cover"
+          alt={`${product.name}, ${product.type} from ${product.region}`}
+          className="h-80 w-full object-contain"
           loading="lazy"
         />
       </div>
@@ -23,9 +28,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {product.region} · {product.type}
         </p>
         <h3 className="font-display text-2xl text-foreground">{product.name}</h3>
-        <p className="text-sm text-muted-foreground">
-          {ageLabel} · {product.abv}% ABV
-        </p>
+        <p className="text-sm text-muted-foreground">{meta}</p>
         <p className="text-sm italic text-foreground/80">{product.caskType}</p>
         <dl className="space-y-1 border-t border-border pt-3 text-sm">
           <div className="flex gap-3">

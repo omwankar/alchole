@@ -74,12 +74,12 @@ const Home = () => {
         <div className="site-container">
           <SectionHeading
             title="The Principal Collection"
-            description="Named expressions, each with a story of wood, colour and place."
+            description="RAER, Jackton Distillery and the houses West Ford carries — as listed in the book."
           />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {products
               .filter((item) =>
-                ["highland-reserve-18", "speyside-elegance-12", "islay-coastal-10"].includes(item.slug),
+                ["raer-inaugural-release", "jackton-gin", "grangestone-12-sherry"].includes(item.slug),
               )
               .map((product) => (
                 <ProductCard key={product.slug} product={product} />

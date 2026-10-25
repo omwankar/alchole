@@ -13,7 +13,7 @@ const Product = () => {
 
   if (!product) return <NotFound />;
 
-  const related = relatedProducts(product.slug, product.region);
+  const related = relatedProducts(product.slug, product.category);
 
   return (
     <Layout>
@@ -27,11 +27,11 @@ const Product = () => {
           <img
             src={product.image}
             alt={`${product.name} bottle`}
-            className="h-full max-h-[640px] w-full object-cover"
+            className="h-full max-h-[640px] w-full bg-black object-contain"
           />
         </div>
         <div className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.28em] text-accent">{product.region}</p>
+          <p className="text-xs uppercase tracking-[0.28em] text-accent">{product.category}</p>
           <h1 className="text-4xl text-primary md:text-5xl">{product.name}</h1>
           <p className="text-lg leading-relaxed text-muted-foreground">{product.summary}</p>
           <div className="gold-divider mx-0" />
@@ -42,7 +42,7 @@ const Product = () => {
             </div>
             <div>
               <dt className="text-muted-foreground">ABV</dt>
-              <dd className="text-foreground">{product.abv}%</dd>
+              <dd className="text-foreground">{product.abv != null ? `${product.abv}%` : product.volume}</dd>
             </div>
             <div>
               <dt className="text-muted-foreground">Cask</dt>
@@ -53,7 +53,7 @@ const Product = () => {
               <dd className="text-foreground">{product.type}</dd>
             </div>
           </dl>
-          <p className="text-3xl text-primary">£{product.price.toLocaleString()}</p>
+          <p className="text-lg text-muted-foreground">{product.volume}</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             {product.soldOut ? (
               <Button

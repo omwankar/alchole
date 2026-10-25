@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .chrome-tmp
 .debug-shots
+.pdf-extract
 
 # Editor directories and files
 .vscode/*
