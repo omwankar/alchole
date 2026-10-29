@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Award, ChevronDown, Globe2, Sparkles, TrendingUp, Users } from "lucide-react";
+import { Award, ChevronDown, Globe2, Sparkles, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -7,9 +7,7 @@ import { Layout } from "@/components/Layout";
 import { Seo } from "@/components/Seo";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureCard } from "@/components/FeatureCard";
-import { DistilleryCard } from "@/components/DistilleryCard";
 import { ProductCard } from "@/components/ProductCard";
-import { StatCounter } from "@/components/StatCounter";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { HeroMedia } from "@/components/HeroMedia";
 import { alts, media } from "@/data/media";
@@ -26,7 +24,7 @@ const Home = () => {
     <Layout>
       <Seo
         title="Rare Spirits"
-        description="West Ford is a house of rare whisky and fine spirits, chosen for character, provenance and patience."
+        description="West Ford presents Jackton Distillery and the RAER range — Lowland whisky, gin and vodka, chosen for character, not volume."
         path="/"
       />
 
@@ -109,9 +107,9 @@ const Home = () => {
             </h2>
             <div className="mt-6 h-px w-6 bg-primary/80" />
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              At West Ford, we believe great spirits cannot be rushed. We partner with the world’s most respected
-              distilleries to bring you casks, single malts and limited releases chosen for character, not volume. Every
-              bottle carries the patience of the people who made it.
+              West Ford brings together a selection of whisky and premium spirit brands. We work with Jackton Distillery
+              and its RAER range, presenting distinctive Scotch expressions — and the gins, vodka and wines that sit
+              beside them — chosen for character, not volume.
             </p>
             <div className="mt-8">
               <Button asChild className="bg-primary text-primary-foreground hover-glow-gold hover:bg-primary/90">
@@ -138,7 +136,7 @@ const Home = () => {
             <FeatureCard
               icon={Globe2}
               title="Place"
-              description="Highland air, Speyside fruit, Islay salt. Landscape is not decoration. It is the work."
+              description="Jackton sits in the Scottish Lowlands, on family land near Glasgow. Place is not decoration. It is the work."
             />
             <FeatureCard
               icon={Award}
@@ -159,39 +157,37 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="px-8 py-20 md:py-28">
-        <div className="site-container">
-          <SectionHeading title="Landscapes of Flavour" description="Three regions. Three tempers of spirit." />
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <DistilleryCard
-              image={media.highland}
-              alt={alts.highland}
-              name="Highland"
-              region="Scottish Highlands"
-              tagline="Rich, full-bodied malts shaped by cold air, peat and patience."
-              href="/collection"
-            />
-            <DistilleryCard
-              image={media.speyside}
-              alt={alts.speyside}
-              name="Speyside"
-              region="Moray"
-              tagline="Elegant, honeyed and fruit-forward, the heart of refined Scotch."
-              href="/collection"
-            />
-            <DistilleryCard
-              image={media.islay}
-              alt={alts.islay}
-              name="Islay"
-              region="Hebrides"
-              tagline="Smoke, sea salt and bold character from the windswept coast."
-              href="/collection"
-            />
+      <section className="bg-background">
+        <div className="grid min-h-[70vh] items-stretch md:grid-cols-2">
+          <div className="flex flex-col justify-center px-8 py-16 md:px-16 md:py-24 lg:px-20">
+            <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-primary">Jackton Distillery</p>
+            <h2 className="max-w-xl text-4xl font-bold text-primary md:text-5xl">A Lowland house, still being written</h2>
+            <div className="mt-6 h-px w-6 bg-primary/80" />
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              Jackton grew from the Kean family farm near East Kilbride into a working distillery: production,
+              maturation and bottling on the same land. On 12 February 2020 the first cask was filled. In 2026 RAER
+              Single Malt — The Inaugural Release — left those warehouses: six thousand hand-numbered bottles, distilled,
+              matured and bottled at Jackton.
+            </p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              It is independent, family-run, and close to the process. Barley from Scottish fields, water of the
+              Lowlands, and oak chosen with care — bourbon, Pedro Ximénez, Amontillado and Oloroso. Grain to glass is
+              the direction of travel, not a finished boast. West Ford presents that spirit, and the gins, vodka and
+              RAER Alliance wines that share the same roof.
+            </p>
+            <div className="mt-8">
+              <Button asChild className="bg-primary text-primary-foreground hover-glow-gold hover:bg-primary/90">
+                <Link to="/about">The House and the still</Link>
+              </Button>
+            </div>
           </div>
-          <div className="mt-12 text-center">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link to="/collection">View Full Collection</Link>
-            </Button>
+          <div className="hover-zoom relative min-h-[420px] overflow-hidden">
+            <img
+              src={media.barrelsBg}
+              alt={alts.barrelsBg}
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
@@ -250,15 +246,6 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="px-8 py-20 md:py-28">
-        <div className="site-container grid grid-cols-2 gap-8 md:grid-cols-4">
-          <StatCounter value={30} label="Years of Expertise" />
-          <StatCounter value={60} label="Partner Distilleries" />
-          <StatCounter value={500} label="Rare Casks" />
-          <StatCounter value={25} label="Countries Served" />
-        </div>
-      </section>
-
       <section className="bg-card">
         <div className="grid min-h-[60vh] items-stretch md:grid-cols-2">
           <div className="hover-zoom relative min-h-[420px] overflow-hidden">
@@ -290,8 +277,10 @@ const Home = () => {
               <div className="flex items-start gap-4">
                 <Globe2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                 <div>
-                  <h4 className="mb-1 text-xl font-semibold text-foreground">Reach</h4>
-                  <p className="text-muted-foreground">A private inventory for collectors across twenty-five countries.</p>
+                  <h4 className="mb-1 text-xl font-semibold text-foreground">Jackton</h4>
+                  <p className="text-muted-foreground">
+                    A family still house in South Lanarkshire — RAER whisky, Jackton gin and vodka, made to be shared.
+                  </p>
                 </div>
               </div>
             </div>
@@ -315,9 +304,9 @@ const Home = () => {
               place="Dubai"
             />
             <TestimonialCard
-              quote="My first cask investment, handled with real transparency."
+              quote="Jackton’s inaugural malt, presented without noise. That is how it should be done."
               name="Daniel K."
-              place="Singapore"
+              place="Edinburgh"
             />
           </div>
         </div>

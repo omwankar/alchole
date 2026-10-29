@@ -12,20 +12,20 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const faqs = [
   {
-    q: "How do you ship?",
-    a: "Bottles leave bonded storage in protective cases. We ship to addresses of legal age, with tracking and insurance. Some territories require additional documentation.",
+    q: "How is West Ford related to Jackton Distillery?",
+    a: "West Ford presents Jackton Distillery and its RAER range — whisky, gin, vodka and the RAER Alliance wines — to those who collect with care. The spirit is made at Jackton, on the Kean family farm in the Scottish Lowlands.",
   },
   {
-    q: "How do you prove authenticity?",
-    a: "Each bottle or cask share includes distillery, fill date and warehouse records. Certificates travel with the goods.",
+    q: "What is in the collection?",
+    a: "The book is the list: RAER single malt and blended expressions, Jackton gin and vodka, Something Blue, Loire wines, and the Scotch and world whiskies we carry beside them.",
   },
   {
-    q: "What is your returns policy?",
-    a: "Unopened bottles in original packing may be returned within fourteen days, subject to local law. Cask shares are contracts and are not returned as retail goods.",
+    q: "How do I enquire?",
+    a: "Write to the house. Enquiries are handled privately. We do not operate a public shopfront or a logistics desk.",
   },
   {
-    q: "How does cask investment work?",
-    a: "You purchase a documented interest in a specific cask. We arrange storage and insurance. Exit is by bottling, private sale, or our next allocation window.",
+    q: "Can I visit the distillery?",
+    a: "Jackton Distillery welcomes visitors for tours and tastings at Hayhill Road, Jackton, Glasgow G74 5AN. West Ford is the house in London. For a tour, Jackton is the place.",
   },
 ];
 
